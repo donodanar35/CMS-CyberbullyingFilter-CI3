@@ -1,0 +1,388 @@
+  <div id="content-wrapper">
+  <div class="container-fluid">
+    <!-- Breadcrumbs-->
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <a href="<?php echo base_url('Admin/antibullying_validasi');?>">Validasi Dataset Komentar</a>
+      </li>
+    </ol>  
+
+    <ol class="breadcrumb">
+    <div class="container">
+          <!-- DataTables Tabel Kategori -->
+          <div class="card mb-12">
+            <div class="card-header">
+              <i class="fa fa-check-circle"></i>
+              <b> Validasi Dataset Komentar</b> 
+            </div>
+            <div class="card-body">
+                <div class="container">
+                    <div class="row">
+                        <div class="table-responsive-xl">
+                          <div id="hasil-validasi"></div>
+                          <table class="table table-hover">
+                            <tr>
+                              <td><center><b>ID</b></center></td><td><center><b>Judul Artikel</b></center></td><td><center><b>Komentar</b></center></td><td><center><b>Sentimen</b></center></td><td><center><b>Jenis Cyberbullying</b></center></td><td><center><b>Action</b></center></td><td><center><b>Valid?</b></center></td>
+                            </tr>
+                            <?php
+                              foreach($daftar_komentar->result() as $komen){
+                            ?>
+                            <tr>
+                              <td><?php echo $komen->ID_DATASETKOMENTAR;?></td>
+                              <td>
+                                <a href="<?php echo site_url();?>admin/antibullying_detail/<?php echo $komen->ID_ARTIKEL;?>" data-idy="#" data-bs-toggle="tooltip" data-bs-html="true" data-bs-placement="bottom" title="Silahkan klik tautan link judul untuk melihat detail artikel!">
+                                  <?php echo $komen->JUDUL_ARTIKEL;?>
+                                </a>
+                              </td>
+                              <td><?php echo $komen->ISI_KOMENTAR;?></td>
+                              <td>
+                                <?php if($komen->SENTIMEN =='cyberbullying'){?>
+                                  <a href="#" data-target="#formUbah" data-toggle="modal" class="btn btn-danger konfir-ubah" data-idb="<?php echo $komen->ID_DATASETKOMENTAR; ?>"  data-idc="<?php echo $komen->SENTIMEN; ?>"  data-idd="<?php echo $komen->JENIS_CYBERBULLYING; ?>" data-idi="<?php echo $komen->ISI_KOMENTAR; ?>" data-bs-toggle="tooltip" data-bs-html="true" data-bs-placement="bottom" title="Silahkan tekan tombol ini untuk mengedit data sentimen komentar!">Bully</a>
+                                <?php }else{ ?>
+                                  <a href="#" data-target="#formUbah" data-toggle="modal" class="btn btn-success konfir-ubah" data-idb="<?php echo $komen->ID_DATASETKOMENTAR; ?>"  data-idc="<?php echo $komen->SENTIMEN; ?>"  data-idd="<?php echo $komen->JENIS_CYBERBULLYING; ?>" data-idi="<?php echo $komen->ISI_KOMENTAR; ?>" data-bs-toggle="tooltip" data-bs-html="true" data-bs-placement="bottom" title="Silahkan tekan tombol ini untuk mengedit data sentimen komentar!">Nonbully</a>
+                                <?php };?>
+                              </td>
+                              <td>
+                                <?php echo $komen->JENIS_CYBERBULLYING;?>
+                              </td>
+                              <td>
+                                <a href="#" class="btn btn-primary konfir-validasi" data-toggle="modal" data-target="#formLaporkan" data-id="<?php echo $komen->ID_DATASETKOMENTAR; ?>"  data-idy="<?php echo $komen->SENTIMEN; ?>" data-idz="<?php echo $komen->ISI_KOMENTAR; ?>" data-ida="<?php echo $komen->JENIS_CYBERBULLYING; ?>" data-bs-toggle="tooltip" data-bs-html="true" data-bs-placement="bottom" title="Silahkan tekan tombol Dtail Validasi untuk melihat detail riwayat validasi sentimen komentar!">Detail Validasi</a>
+                              </td>
+                              <td>
+                                <a href="#" class="btn btn-success konfir-validasi-betul" data-ide="<?php echo $komen->ID_DATASETKOMENTAR; ?>"  data-idf="<?php echo $komen->SENTIMEN; ?>" data-idg="<?php echo $komen->ISI_KOMENTAR; ?>" data-idh="<?php echo $komen->JENIS_CYBERBULLYING; ?>" data-bs-toggle="tooltip" data-bs-html="true" data-bs-placement="bottom" title="Silahkan tekan tombol betul jika dinilai validasi sentimen ini sudah benar!">Betul</a>
+                                <a href="#" class="btn btn-danger konfir-validasi-salah" data-toggle="modal" data-target="#formLaporkan" data-ide="<?php echo $komen->ID_DATASETKOMENTAR; ?>"  data-idf="<?php echo $komen->SENTIMEN; ?>" data-idg="<?php echo $komen->ISI_KOMENTAR; ?>" data-idh="<?php echo $komen->JENIS_CYBERBULLYING; ?>" data-bs-toggle="tooltip" data-bs-html="true" data-bs-placement="bottom" title="Silahkan tekan tombol salah untuk memvalidasi komentar ini sesuai dengan penilaian Anda!">Salah</a>
+                              </td>
+                            </tr>
+                            <?php } ?>
+                          </table>
+                        </div>
+                    </div>
+                </div>
+            </div>                
+            <div class="card-footer small text-muted">
+              <?php echo $this->pagination->create_links();?> 
+            </div>
+          </div>
+        </ol>
+    </div>
+</div>
+  <!-- /.container-fluid -->
+ 
+  <!-- Modal Laporkan -->
+  <div class="modal fade bd-example-modal-xl" id="formLaporkan" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="formModalEditLabel">Validasi Sentimen Komentar</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <!-- Beri id "pesan" untuk menampung pesan error -->
+            <div id="pesan"></div>
+            <form id="formSimpanValidasi" method="post">
+              <input name="idkomentar" id="idkomentar" type="hidden" value="0">
+              <div class="form-group">
+                <label for="exampleFormControlTextarea1"><b>Isi Komentar: </b> </label>
+                <textarea class="form-control keterangan" id="isikomentar" name="isikomentar" rows="2"></textarea>
+              </div>
+              <div class="form-group">
+                <b>Sentimen: </b>  
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" id="sentimen-cyberbullying" type="radio" name="sentimen" value="cyberbullying" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Menurut Williard (2005), cyberbullying merupakan perlakuan kejam  yang dilakukan   dengan   sengaja   kepada   orang   lain   dengan   mengirimkan   atau mengedarkan bahan (pesan, teks, gambar, video, audio) yang berbahaya atau terlibat dalam bentuk-bentuk agresi sosial menggunakan    internat    atau    teknologi    digital    lainnya.">
+                  <label class="form-check-label" for="inlineRadio1">cyberbullying</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" id="sentimen-noncyberbullying" type="radio" name="sentimen" value="non-cyberbullying" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Non-cyberbullying adalah segala komentar yang tidak mengandung muatan cyberbullying, dengan kata lain, merupakan komentar yang sopan.">
+                  <label class="form-check-label" for="inlineRadio2">non-cyberbullying</label>
+                </div>
+              </div>
+              <div class="form-group">
+                  <label for="exampleFormControlSelect2"><b>Jenis Perundungan:</b></label>
+                  <select multiple class="form-control" id="pelanggaran" name="jenisbully" >
+                      <option value="flamming" data-bs-toggle="tooltip" data-bs-html="true" data-bs-placement="bottom" title="Flamming adalah perilaku mengirimkan pesan teks dengan kata-kata kasar dan frontal. Perlakuan ini umumnya ditemukan pada chat group di media sosial.">Flamming</option>
+                        <option value="harassement" data-bs-toggle="tooltip" data-bs-html="true" data-bs-placement="bottom" title="Harassment adalah  perilaku  mengirikan  pesan  dengan  tidak  sopan,  yang ditujukan  kepada  seseorang  yang  berupa  gangguan  yang  dikirimkan  melalui email, sms, maupun pesan teks di jejaring media sosial secara terus menerus. Harassment merupakan  kelanjutan  dari flamming dalam  jangka  panjang. Harassment dilakukan dengan saling berbalas pesan atau perang teks.">Harassement</option>
+                        <option value="denigration" data-bs-toggle="tooltip" data-bs-html="true" data-bs-placement="bottom" title="Denigration adalah  perilaku  mengubar  keburukan  seorang  di  internet dengan maksud merusak reputasi dan nama baik dari orang yang dituju.">Denigration</option>
+                        <option value="cyberstalking" data-bs-toggle="tooltip" data-bs-html="true" data-bs-placement="bottom" title="Cyberstalking merupakan   perilaku   berulang   kali   mengirimkan   ancaman membahayakan atau pesan-pesan yang mengintimidasi dengan menggunakan komunikasi elektronik.">Cyberstalking</option>
+                        <option value="impersonation" data-bs-toggle="tooltip" data-bs-html="true" data-bs-placement="bottom" title="Impersonation adalah    perilaku    berpura-pura    menjadi    orang    lain    dan mengirimkan pesan-pesan atau status yang tidak baik.">Impersonation</option>
+                  </select>
+              </div>
+              <div class="form-group">
+                <label for="exampleFormControlTextarea1" data-bs-toggle="tooltip" data-bs-html="true" data-bs-placement="bottom" title="Silahkan tulis alasan Anda menyebut komentar ini mengandung muatan cyberbullying (tidak wajib)."><b>Alasan (opsional): </b> </label>
+                <textarea class="form-control" id="keterangan" name="keterangan" id="keterangan" rows="1"></textarea>
+              </div>
+              <div class="form-group">
+                <label class="form-check-label" for="inlineRadio1" data-bs-toggle="tooltip" data-bs-html="true" data-bs-placement="bottom" title="Riwayat validasi sentimen komentar dari para validator lainnya"><b>Riwayat Validasi Sentimen Komentar</b></label>
+                <div id="tabel"></div>
+              </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary fa fa-window-close btn-tutup" data-dismiss="modal"> Tutup </button>
+            <button type="button" class="btn btn-primary btn-simpan-validasi"> Validasi </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>  
+    <!-- Akhir dari modal lapor--> 
+
+  <!-- Modal Tambah -->
+  <div class="modal fade" id="formUbah" tabindex="-1" role="dialog" aria-labelledby="formTambah" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="formTambahJudul">Ubah Sentimen Komentar</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <!-- Beri id "pesan-error" untuk menampung pesan error -->
+            <div id="pesan-ubah"></div>
+            <form class="form-horizontal" id="formsimpankomentar">
+              <div class="form-body">
+                  <input name="idkomentar" id="idkomentar2" type="hidden" value="0">
+                  <div class="form-group">
+                      <label for="exampleFormControlTextarea1"><b>Isi Komentar: </b> </label>
+                      <textarea class="form-control keterangan" id="isikomentar2" name="isikomentar" rows="2"></textarea>
+                    </div>
+                  <div class="form-group">
+                      <b>Sentimen: </b>  
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="sentimen" id="sentimen-cyberbullying2" value="cyberbullying" data-bs-placement="bottom" title="Menurut Williard (2005), cyberbullying merupakan perlakuan kejam  yang dilakukan   dengan   sengaja   kepada   orang   lain   dengan   mengirimkan   atau mengedarkan bahan (pesan, teks, gambar, video, audio) yang berbahaya atau terlibat dalam bentuk-bentuk agresi sosial menggunakan    internat    atau    teknologi    digital    lainnya.">
+                        <label class="form-check-label" for="inlineRadio1">cyberbullying</label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="sentimen" id="sentimen-noncyberbullying2" value="non-cyberbullying" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Non-cyberbullying adalah segala komentar yang tidak mengandung muatan cyberbullying, dengan kata lain, merupakan komentar yang sopan.">
+                        <label class="form-check-label" for="inlineRadio2">non-cyberbullying</label>
+                      </div>
+                  </div>
+                  <div class="form-group">
+                        <label for="exampleFormControlSelect2"><b>Jenis Perundungan:</b></label>
+                        <select multiple class="form-control" name="jenisbully" id="pelanggaran2">
+                            <option value="flamming" data-bs-toggle="tooltip" data-bs-html="true" data-bs-placement="bottom" title="Flamming adalah perilaku mengirimkan pesan teks dengan kata-kata kasar dan frontal. Perlakuan ini umumnya ditemukan pada chat group di media sosial.">Flamming</option>
+                            <option value="harassement" data-bs-toggle="tooltip" data-bs-html="true" data-bs-placement="bottom" title="Harassment adalah  perilaku  mengirikan  pesan  dengan  tidak  sopan,  yang ditujukan  kepada  seseorang  yang  berupa  gangguan  yang  dikirimkan  melalui email, sms, maupun pesan teks di jejaring media sosial secara terus menerus. Harassment merupakan  kelanjutan  dari flamming dalam  jangka  panjang. Harassment dilakukan dengan saling berbalas pesan atau perang teks.">Harassement</option>
+                            <option value="denigration" data-bs-toggle="tooltip" data-bs-html="true" data-bs-placement="bottom" title="Denigration adalah  perilaku  mengubar  keburukan  seorang  di  internet dengan maksud merusak reputasi dan nama baik dari orang yang dituju.">Denigration</option>
+                            <option value="cyberstalking" data-bs-toggle="tooltip" data-bs-html="true" data-bs-placement="bottom" title="Cyberstalking merupakan   perilaku   berulang   kali   mengirimkan   ancaman membahayakan atau pesan-pesan yang mengintimidasi dengan menggunakan komunikasi elektronik.">Cyberstalking</option>
+                            <option value="impersonation" data-bs-toggle="tooltip" data-bs-html="true" data-bs-placement="bottom" title="Impersonation adalah    perilaku    berpura-pura    menjadi    orang    lain    dan mengirimkan pesan-pesan atau status yang tidak baik.">Impersonation</option>
+                        </select>
+                  </div>
+              </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" id="btn-tutup-dataset" data-dismiss="modal">Tutup</button>
+            <button type="button" class="btn btn-primary" id="btn-simpan-dataset">Simpan</button>
+          </form>
+          </div>
+        </div>
+      </div>
+    </div>  
+  <!-- Akhir dari modal tambah-->
+
+  <script src="<?php echo base_url('asset/jquery/jquery.min.js');?>"></script>  
+  <script type="text/javascript">
+  $(document).ready(function(){
+    var BASE_URL = "<?php echo base_url();?>";
+
+    var id = "";
+    var idy = "";
+    var idz = "";
+    var ida = "";
+        
+    var idkomen = ""
+    var sentimen = "";
+    var jenisbully = "";
+
+    $('.konfir-validasi').on('click', function(){
+        $('#sentimen-noncyberbullying').prop('checked',false);
+        $('#sentimen-cyberbullying').prop('checked',false);
+        $('#pelanggaran option[value="flamming"]').removeAttr('selected');
+        $('#pelanggaran option[value="harassement"]').removeAttr('selected');
+        $('#pelanggaran option[value="denigration"]').removeAttr('selected');
+        $('#pelanggaran option[value="cyberstalking"]').removeAttr('selected');
+        $('#pelanggaran option[value="impersonation"]').removeAttr('selected');
+        $('#pelanggaran').prop('disabled',false);
+
+        idkomen = $(this).data('id');
+        sentimen = $(this).data('idy');
+        var komen = $(this).data('idz');
+        jenisbully = $(this).data('ida');
+        $('#isikomentar').val(komen);
+        $('#idkomentar').val(idkomen);
+
+        if(jenisbully=="flamming"){
+          $('#pelanggaran option[value="flamming').attr('selected','selected');
+        }else if(jenisbully=="harassement"){
+          $('#pelanggaran option[value="harassement"]').attr('selected','selected');
+        }else if(jenisbully=="denigration"){
+          $('#pelanggaran option[value="denigration"]').attr('selected','selected');
+        }else if(jenisbully=="cyberstalking"){
+          $('#pelanggaran option[value="cyberstalking"]').attr('selected','selected');
+        }else if(jenisbully=="impersonation"){
+          $('#pelanggaran option[value="impersonation"]').attr('selected','selected');
+        }else if(jenisbully=="bukan perundungan"){
+          $('#pelanggaran').prop('disabled',true);
+        }
+
+        if(sentimen=="cyberbullying"){
+          $('#sentimen-noncyberbullying').prop('checked',false);
+          $('#sentimen-cyberbullying').prop('checked',true);
+        }else if(sentimen="non-cyberbullying"){
+          $('#sentimen-noncyberbullying').prop('checked',true);
+          $('#sentimen-cyberbullying').prop('checked',false);
+        }
+
+        $.ajax({
+          url: BASE_URL + 'Antibullying/get_riwayatvalidasi',
+          data: {idkomentar : idkomen},
+          method: 'post',
+          dataType: 'json',
+          success: function(response){
+            if(response.status=="sukses"){
+              $('#tabel').html(response.tabel);
+            }
+          },
+          error: function (xhr, ajaxOptions, thrownError) { 
+            alert(xhr.responseText);
+            console.log(xhr.responseText);
+          }
+      });
+
+    });
+
+    $('#sentimen-cyberbullying').on('click', function(){
+      $('#pelanggaran').prop('disabled',false);
+    });
+
+    $('#sentimen-noncyberbullying').on('click', function(){
+      $('#pelanggaran').prop('disabled',true);
+    });
+
+    $('.konfir-validasi-betul').on('click', function(){
+      var idkomenv = $(this).data('ide');
+      var sentimenv = $(this).data('idf');
+      var komenv = $(this).data('idg');
+      var jenisbullyv = $(this).data('idh');
+      $.ajax({
+        url: BASE_URL + 'Antibullying/validasi_komentar',
+        data: {idkomentar : idkomenv, sentimen : sentimenv, jenisbully : jenisbullyv, keterangan : ""},
+        method: 'post',
+        dataType: 'json',
+          success: function(response){
+            if(response.status=="sukses"){
+              $('#hasil-validasi').html('<div class="alert alert-success">' +response.pesan +'</div>').fadeIn().delay(1000).fadeOut();
+              //alert(response.pesan);
+            }else{
+              $('#hasil-validasi').html('<div class="alert alert-danger">' +response.pesan +'</div>').fadeIn().delay(1000).fadeOut();
+              //alert(response.pesan);
+            }
+          },
+          error: function (xhr, ajaxOptions, thrownError) { 
+            alert(xhr.responseText);
+            console.log(xhr.responseText);
+          }
+      });
+    });
+    
+    $('.btn-simpan-validasi').on('click', function(){
+      $.ajax({
+        url: BASE_URL + 'Antibullying/validasi_komentar',
+        data: $("#formSimpanValidasi").serialize(),
+        method: 'post',
+        dataType: 'json',
+          success: function(response){
+            if(response.status=="sukses"){
+              $('#pesan').html('<div class="alert alert-success">' +response.pesan +'</div>').fadeIn().delay(1000).fadeOut();
+              //alert(response.pesan);
+            }else{
+              $('#pesan').html('<div class="alert alert-danger">' +response.pesan +'</div>').fadeIn().delay(1000).fadeOut();
+            }
+          },
+          error: function (xhr, ajaxOptions, thrownError) { 
+            alert(xhr.responseText);
+            console.log(xhr.responseText);
+          }
+      });
+    });
+    
+  
+
+    $('.konfir-ubah').on('click', function(){
+        $('#sentimen-noncyberbullying2').prop('checked',false);
+        $('#sentimen-cyberbullying2').prop('checked',false);
+        $('#pelanggaran2 option[value="flamming"]').removeAttr('selected');
+        $('#pelanggaran2 option[value="harassement"]').removeAttr('selected');
+        $('#pelanggaran2 option[value="denigration"]').removeAttr('selected');
+        $('#pelanggaran2 option[value="cyberstalking"]').removeAttr('selected');
+        $('#pelanggaran2 option[value="impersonation"]').removeAttr('selected');
+        $('#pelanggaran2').prop('disabled',false);
+        
+          var idb = "";
+          var idc = "";
+          var idd = "";
+          var idkomen2 = ""
+          var sentimen2 = "";
+          var jenisbully2 = "";
+
+          idkomen2 = $(this).data('idb');
+          isikomentar2 = $(this).data('idi');
+          sentimen2 = $(this).data('idc');
+          jenisbully2 = $(this).data('idd');
+          $('#isikomentar2').val(isikomentar2);
+          $('#idkomentar2').val(idkomen2);
+
+          if(jenisbully2=="flamming"){
+            $('#pelanggaran2 option[value="flamming').attr('selected','selected');
+          }else if(jenisbully2=="harassement"){
+            $('#pelanggaran2 option[value="harassement"]').attr('selected','selected');
+          }else if(jenisbully2=="denigration"){
+            $('#pelanggaran2 option[value="denigration"]').attr('selected','selected');
+          }else if(jenisbully2=="cyberstalking"){
+            $('#pelanggaran2 option[value="cyberstalking"]').attr('selected','selected');
+          }else if(jenisbully2=="impersonation"){
+            $('#pelanggaran2 option[value="impersonation"]').attr('selected','selected');
+          }else if(jenisbully2=="bukan perundungan"){
+            $('#pelanggaran2').prop('disabled',true);
+          }
+
+          if(sentimen2=="cyberbullying"){
+            $('#sentimen-noncyberbullying2').prop('checked',false);
+            $('#sentimen-cyberbullying2').prop('checked',true);
+          }else if(sentimen2="non-cyberbullying"){
+            $('#sentimen-noncyberbullying2').prop('checked',true);
+            $('#sentimen-cyberbullying2').prop('checked',false);
+          }
+
+      });
+
+      $('#sentimen-cyberbullying2').on('click', function(){
+        $('#pelanggaran2').prop('disabled',false);
+      });
+
+      $('#sentimen-noncyberbullying2').on('click', function(){
+        $('#pelanggaran2').prop('disabled',true);
+      });
+
+      $('#btn-simpan-dataset').on('click', function(){
+        $.ajax({
+          url: BASE_URL + 'Antibullying/simpan_validasi_komentar',
+          data: $("#formsimpankomentar").serialize(),
+          method: 'post',
+          dataType: 'json',
+            success: function(response){
+              if(response.status=="sukses"){
+                $('#pesan-ubah').html('<div class="alert alert-success">' +response.pesan +'</div>').fadeIn().delay(1000).fadeOut();
+              }else{
+                $('#pesan-ubah').html('<div class="alert alert-danger">' +response.pesan +'</div>').fadeIn().delay(1000).fadeOut();
+              }
+            },
+            error: function (xhr, ajaxOptions, thrownError) { 
+              alert(xhr.responseText);
+              console.log(xhr.responseText);
+            }
+        });
+    });
+
+  });
+  </script>

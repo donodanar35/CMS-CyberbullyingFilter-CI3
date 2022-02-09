@@ -1,0 +1,7 @@
+[29-Nov-2020 04:14:22 UTC] PHP Parse error:  syntax error, unexpected ')' in /home/kebaikan/public_html/application/views/auth/index.php on line 61
+[29-Nov-2020 04:15:12 UTC] PHP Parse error:  syntax error, unexpected ')' in /home/kebaikan/public_html/application/views/auth/index.php on line 61
+[29-Nov-2020 08:01:30 UTC] PHP Fatal error:  Call to a member function result_array() on null in /home/kebaikan/public_html/application/views/admin/artikel/artikel_kelola.html on line 40
+[29-Nov-2020 08:40:03 UTC] PHP Fatal error:  Call to a member function format() on null in /home/kebaikan/public_html/application/controllers/Artikel.php on line 1258
+[29-Nov-2020 08:43:18 UTC] PHP Fatal error:  Call to a member function format() on null in /home/kebaikan/public_html/application/controllers/Artikel.php on line 1259
+[29-Nov-2020 11:27:29 UTC] PHP Parse error:  syntax error, unexpected '[', expecting variable (T_VARIABLE) or '$' in /home/kebaikan/public_html/application/views/admin/artikel/artikel_kelola_tinjau.html on line 67
+[29-Nov-2020 11:27:52 UTC] PHP Parse error:  syntax error, unexpected '}' in /home/kebaikan/public_html/application/views/admin/artikel/artikel_kelola_tinjau.html on line 73

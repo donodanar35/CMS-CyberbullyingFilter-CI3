@@ -1,0 +1,399 @@
+<div id="content-wrapper">
+    <div class="container-fluid">
+        
+      <!-- Breadcrumbs-->
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          <a href="<?php echo base_url('Admin/antibullying');?>">Dataset Artikel</a>
+        </li>
+        <li class="breadcrumb-item active"><a href="#">Detail</a></li>
+      </ol>  
+
+
+
+      <ol class="breadcrumb">
+      <div class="container">
+            <!-- DataTables Tabel Artikel -->
+            <div class="card mb-12">
+              <div class="card-header">
+                <i class="fas fa-comments"></i>
+                <b>Edit Data Artikel</b>
+              </div>
+              <div class="card-body">
+                  <?php if(isset($artikel)){?>
+                  <form id="formArtikel" method="POST">
+                      <input name="idartikel" type="hidden" value="<?php echo $artikel->ID_ARTIKEL;?>">  
+                      
+                      <div class="form-group">
+                          <label for="judul"><b>Judul Artikel</b></label>
+                          <input name="judulartikel" type="text" class="form-control" id="judul" aria-describedby="Judul" placeholder="Masukkan judul..." value="<?php echo $artikel->JUDUL_ARTIKEL;?>">
+                      </div>
+
+                      <div class="form-group">
+                          <label for="topik"><b>Topik Artikel</b></label>
+                          <input name="topikartikel" type="text" class="form-control" id="topik" aria-describedby="Topik" placeholder="Masukkan topik..." value="<?php echo $artikel->TOPIK_ARTIKEL;?>">
+                      </div>
+
+                      <div class="form-group">
+                        <label for="sumber"><b>Sumber Artikel</b></label>
+                        <input name="sumberartikel" type="text" class="form-control" id="sumber" aria-describedby="Judul" placeholder="Masukkan judul..." value="<?php echo $artikel->SUMBER_ARTIKEL;?>">
+                      </div>
+
+                      <div class="form-group">
+                          <label for="tanggal"><b>Tanggal Artikel</b></label>
+                          <input name="tanggalartikel" type="date" class="form-control" id="tanggal" aria-describedby="Judul" placeholder="Masukkan judul..." value="<?php echo $artikel->TANGGAL_ARTIKEL;?>">
+                      </div>
+
+                      <div class="form-group">
+                          <label for="isiartikel"><b>Isi Artikel</b></label>
+                          <textarea id="mytextarea" form="formArtikel" rows="20" name="isiartikel" class="form-control tinymce" required placeholder="Tulis isi artikel...">
+                              <?php echo $artikel->ISI_ARTIKEL;?>
+                          </textarea>
+                      </div>
+                      <button id="btn-simpan-artikel" type="button" class="btn btn-primary">Simpan</button>
+                  </form>
+                  <?php }?>
+              </div>
+            </div>
+              <div class="card-footer small text-muted">Copyright &copy;<script>document.write(new Date().getFullYear());</script> KebaikanKita.com</div>
+            </div>
+          </ol>
+
+          <a id="btn-tambah" href="#" class="btn btn-success mb-3 pull-right" data-toggle="modal" data-target="#formTambah">
+              <span class="glyphicon glyphicon-plus"></span> &nbsp;Tambah Komentar
+          </a>
+          
+          <!-- DataTables Tabel Kategori -->
+          <div class="card mb-12">
+              <div class="card-header">
+                <i class="fas fa-comments"></i>
+                <b>Daftar Komentar</b>
+              </div>
+              <div class="card-body">
+                <div class="table-responsive">
+                  <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                      <thead>
+                        <tr>
+                          <th><center>ID</center></th>
+                          <th><center>Komentar</center></th>
+                          <th><center>Case Folding</center></th>
+                          <th><center>Cleaning</center></th>
+                          <th><center>Normalisasi</center></th>
+                          <th><center>Stemming</center></th>
+                          <th><center>Stopword</center></th>
+                          <th><center>Tokenizing</center></th>
+                          <th><center>Sentimen</center></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <?php
+                          foreach($komentar->result_array() as $komen){
+                        ?>
+                        <tr>
+                            <td><?php echo $komen['ID_DATASETKOMENTAR'];?></td>
+                          <td><?php echo $komen['ISI_KOMENTAR'];?></td>
+                          <td><?php echo $komen['CASE_FOLDING'];?></td>
+                          <td><?php echo $komen['CLEANING'];?></td>
+                          <td><?php echo $komen['NORMALISASI'];?></td>
+                          <td><?php echo $komen['STEMMING'];?></td>
+                          <td><?php echo $komen['STOPWORD'];?></td>
+                          <td><?php echo $komen['TOKENIZING'];?></td>
+                          <td>
+                            <?php
+                              if($komen['SENTIMEN']=='non-cyberbullying'){
+                            ?>
+                            <a href="#" data-target="#formUbah" data-toggle="modal" class="btn btn-primary konfir-ubah" data-idb="<?php echo $komen['ID_DATASETKOMENTAR']; ?>" data-idc="<?php echo $komen['SENTIMEN']; ?>"   data-idd="<?php echo $komen['JENIS_CYBERBULLYING']; ?>" data-idi="<?php echo $komen['ISI_KOMENTAR']; ?>" data-bs-toggle="tooltip" data-bs-html="true" data-bs-placement="bottom" title="Silahkan tekan tombol ini untuk mengedit data sentimen komentar!">Non-Bully</a>    
+                            <?php }else{ ?>
+                              <a href="#" data-target="#formUbah" data-toggle="modal" class="btn btn-danger konfir-ubah" data-idb="<?php echo $komen['ID_DATASETKOMENTAR']; ?>" data-idc="<?php echo $komen['SENTIMEN']; ?>"   data-idd="<?php echo $komen['JENIS_CYBERBULLYING']; ?>" data-idi="<?php echo $komen['ISI_KOMENTAR']; ?>" data-bs-toggle="tooltip" data-bs-html="true" data-bs-placement="bottom" title="Silahkan tekan tombol ini untuk mengedit data sentimen komentar!">Bully</a>
+                            <?php  }
+                            ?>
+                            
+                          </td>
+                        </tr>
+                        <?php }?>
+                      </tbody>  
+                  </table>
+                </div>
+              </div>
+              <div class="card-footer small text-muted">Copyright &copy;<script>document.write(new Date().getFullYear());</script> KebaikanKita.com</div>
+            </div>
+
+      </div>
+    </div>
+    <!-- /.container-fluid --> 
+
+      <!-- Modal Tambah -->
+  <div class="modal fade" id="formTambah" tabindex="-1" role="dialog" aria-labelledby="formTambah" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="formTambahJudul">Tambah Data Komentar</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <!-- Beri id "pesan-error" untuk menampung pesan error -->
+            <div id="pesan-error-dataset" class="alert alert-danger"></div>
+            <div id="pesan-sukses-dataset" class="alert alert-success"></div>
+            <form class="form-horizontal" id="formbuat">
+              <div class="form-body">
+                  <input type="hidden" id="id_artikel" name="idartikel" value="<?php echo $artikel->ID_ARTIKEL;?>">
+                  <div class="form-group">
+                      <label for="judulartikel"><b>Komentar</b></label>
+                      <textarea type="text" rows="2" class="form-control" id="isikomentar" name="isikomentar" placeholder="Tulis komentar artikel..."></textarea>
+                  </div>
+                  <div class="form-group">
+                    <label for="thread"><b>Sentimen</b></label>
+                    <select class="form-control" id="sentimen" name="sentimen">
+                      <option value="non-cyberbullying">non-cyberbullying</option>
+                      <option value="cyberbullying">cyberbullying</option>
+                    </select>
+                  </div>
+              </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" id="btn-tutup-dataset" data-dismiss="modal">Tutup</button>
+            <button type="button" class="btn btn-primary" id="btn-tambah-dataset">Simpan</button>
+          </form>
+          </div>
+        </div>
+      </div>
+    </div>  
+  <!-- Akhir dari modal tambah-->
+
+        <!-- Modal Tambah -->
+  <div class="modal fade" id="formUbah" tabindex="-1" role="dialog" aria-labelledby="formTambah" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="formTambahJudul">Ubah Sentimen Komentar</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <!-- Beri id "pesan-error" untuk menampung pesan error -->
+          <div id="pesan-ubah"></div>
+          <form class="form-horizontal" id="formsimpankomentar">
+            <div class="form-body">
+                <input name="idkomentar" id="idkomentar2" type="hidden" value="0">
+                <div class="form-group">
+                    <label for="exampleFormControlTextarea1"><b>Isi Komentar: </b> </label>
+                    <textarea class="form-control keterangan" id="isikomentar2" name="isikomentar" rows="2"></textarea>
+                  </div>
+                <div class="form-group">
+                    <b>Sentimen: </b>  
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" name="sentimen" id="sentimen-cyberbullying2" value="cyberbullying" data-bs-placement="bottom" title="Menurut Williard (2005), cyberbullying merupakan perlakuan kejam  yang dilakukan   dengan   sengaja   kepada   orang   lain   dengan   mengirimkan   atau mengedarkan bahan (pesan, teks, gambar, video, audio) yang berbahaya atau terlibat dalam bentuk-bentuk agresi sosial menggunakan    internat    atau    teknologi    digital    lainnya.">
+                      <label class="form-check-label" for="inlineRadio1">cyberbullying</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" name="sentimen" id="sentimen-noncyberbullying2" value="non-cyberbullying" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Non-cyberbullying adalah segala komentar yang tidak mengandung muatan cyberbullying, dengan kata lain, merupakan komentar yang sopan.">
+                      <label class="form-check-label" for="inlineRadio2">non-cyberbullying</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                      <label for="exampleFormControlSelect2"><b>Jenis Perundungan:</b></label>
+                      <select multiple class="form-control" name="jenisbully" id="pelanggaran2">
+                          <option value="flamming" data-bs-toggle="tooltip" data-bs-html="true" data-bs-placement="bottom" title="Flamming adalah perilaku mengirimkan pesan teks dengan kata-kata kasar dan frontal. Perlakuan ini umumnya ditemukan pada chat group di media sosial.">Flamming</option>
+                          <option value="harassement" data-bs-toggle="tooltip" data-bs-html="true" data-bs-placement="bottom" title="Harassment adalah  perilaku  mengirikan  pesan  dengan  tidak  sopan,  yang ditujukan  kepada  seseorang  yang  berupa  gangguan  yang  dikirimkan  melalui email, sms, maupun pesan teks di jejaring media sosial secara terus menerus. Harassment merupakan  kelanjutan  dari flamming dalam  jangka  panjang. Harassment dilakukan dengan saling berbalas pesan atau perang teks.">Harassement</option>
+                          <option value="denigration" data-bs-toggle="tooltip" data-bs-html="true" data-bs-placement="bottom" title="Denigration adalah  perilaku  mengubar  keburukan  seorang  di  internet dengan maksud merusak reputasi dan nama baik dari orang yang dituju.">Denigration</option>
+                          <option value="cyberstalking" data-bs-toggle="tooltip" data-bs-html="true" data-bs-placement="bottom" title="Cyberstalking merupakan   perilaku   berulang   kali   mengirimkan   ancaman membahayakan atau pesan-pesan yang mengintimidasi dengan menggunakan komunikasi elektronik.">Cyberstalking</option>
+                          <option value="impersonation" data-bs-toggle="tooltip" data-bs-html="true" data-bs-placement="bottom" title="Impersonation adalah    perilaku    berpura-pura    menjadi    orang    lain    dan mengirimkan pesan-pesan atau status yang tidak baik.">Impersonation</option>
+                      </select>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" id="btn-tutup-dataset" data-dismiss="modal">Tutup</button>
+          <button type="button" class="btn btn-primary" id="btn-simpan-dataset">Simpan</button>
+        </form>
+        </div>
+      </div>
+    </div>
+  </div>  
+<!-- Akhir dari modal tambah-->
+
+    <script src="<?php echo base_url('asset/jquery/jquery.min.js');?>"></script>  
+
+    <script type="text/javascript">
+      $(document).ready(function(){
+        var BASE_URL = "<?php echo base_url();?>";
+        $('#pesan-error').hide();
+        $('#pesan-sukses').hide();
+
+        $('#btn-simpan-artikel').on('click', function(){
+          $.ajax({
+                    url: BASE_URL + 'Antibullying/artikel_ubah',
+                    data: $("#formArtikel").serialize(),
+                    method: 'post',
+                    dataType: 'json',
+                    success: function(response){
+                        if(response.status == 'sukses'){
+                          alert(response.pesan);
+                          $('#pesan-sukses').html(response.pesan).fadeIn().delay(3000).fadeOut();
+                          var url = "";
+                          window.setTimeout(function(){ window.location = url; },100);
+                        }else{
+                          alert(response.pesan);
+                          $('#pesan-error').html(response.pesan).fadeIn().delay(3000).fadeOut();
+                        }
+                    },
+                      error: function (xhr, ajaxOptions, thrownError) { 
+                        alert(xhr.responseText) 
+                      }
+                  });
+        });
+
+        $('#btn-tutup-dataset').on('click', function(){
+          var url = "";
+          window.setTimeout(function(){ window.location = url; },1000);
+        });
+
+
+          $('#btn-tambah').on('click', function(){
+              $('#pesan-error-dataset').hide();
+              $('#pesan-sukses-dataset').hide();
+              $('#btn-tambah-dataset').on('click', function(){
+                  $.ajax({
+                    url: BASE_URL + 'Antibullying/dataset_komentar_buat',
+                    data: $("#formbuat").serialize(),
+                    method: 'post',
+                    dataType: 'json',
+                    success: function(response){
+                        if(response.status == 'sukses'){
+                          $('#pesan-sukses-dataset').html(response.pesan).fadeIn().delay(1000).fadeOut();
+                          $('#isikomentar').val('');
+                        }else{
+                          $('#pesan-error-dataset').html(response.pesan).fadeIn().delay(1000).fadeOut();
+                        }
+                    },
+                      error: function (xhr, ajaxOptions, thrownError) { 
+                        alert(xhr.responseText) 
+                      }
+                  });
+              });
+          });
+
+          $('.ubahkategori').on('click', function(){
+              $('#pesan-error-dataset-edit').hide();
+              $('#pesan-sukses-dataset-edit').hide();
+              const idx = $(this).data('idy');
+              //alert(idx);
+              $.ajax({
+                  url: BASE_URL + 'Antibullying/getdatasetkomentar',
+                  data: {idx : idx},
+                  method: 'post',
+                  dataType: 'json',
+                  success: function(data){
+                      $('#iddatasetkomentar-edit').val(data.ID_DATASETKOMENTAR);
+                      $('#isidatasetkomentar-edit').val(data.ISI_KOMENTAR);
+                      $('#sentimendatasetkomentar-edit').val(data.SENTIMEN); 
+
+                      $('#btn-ubah-dataset').on('click', function(){
+                        $.ajax({
+                          url: BASE_URL + 'Antibullying/komentar_ubah',
+                          data: $("#formEdit form").serialize(),
+                          method: 'post',
+                          dataType: 'json',
+                          success: function(response){
+                              if(response.status == 'sukses'){
+                                $('#pesan-sukses-dataset-edit').html(response.pesan).fadeIn().delay(100).fadeOut();
+                                var url = "";
+                                window.setTimeout(function(){ window.location = url; },100);
+                              }else{
+                                $('#pesan-error-dataset-edit').html(response.pesan).fadeIn().delay(100).fadeOut();
+                              }
+                            },
+                              error: function (xhr, ajaxOptions, thrownError) { 
+                                alert(xhr.responseText) 
+                              }
+                          });
+                      });
+
+                  },
+                    error: function (xhr, ajaxOptions, thrownError) { 
+                      alert(xhr.responseText) 
+                  }
+              });
+          });        
+
+          $('.konfir-ubah').on('click', function(){
+        $('#sentimen-noncyberbullying2').prop('checked',false);
+        $('#sentimen-cyberbullying2').prop('checked',false);
+        $('#pelanggaran2 option[value="flamming"]').removeAttr('selected');
+        $('#pelanggaran2 option[value="harassement"]').removeAttr('selected');
+        $('#pelanggaran2 option[value="denigration"]').removeAttr('selected');
+        $('#pelanggaran2 option[value="cyberstalking"]').removeAttr('selected');
+        $('#pelanggaran2 option[value="impersonation"]').removeAttr('selected');
+        $('#pelanggaran2').prop('disabled',false);
+        
+          var idb = "";
+          var idc = "";
+          var idd = "";
+          var idkomen2 = ""
+          var sentimen2 = "";
+          var jenisbully2 = "";
+
+          idkomen2 = $(this).data('idb');
+          isikomentar2 = $(this).data('idi');
+          sentimen2 = $(this).data('idc');
+          jenisbully2 = $(this).data('idd');
+          $('#isikomentar2').val(isikomentar2);
+          $('#idkomentar2').val(idkomen2);
+
+          if(jenisbully2=="flamming"){
+            $('#pelanggaran2 option[value="flamming').attr('selected','selected');
+          }else if(jenisbully2=="harassement"){
+            $('#pelanggaran2 option[value="harassement"]').attr('selected','selected');
+          }else if(jenisbully2=="denigration"){
+            $('#pelanggaran2 option[value="denigration"]').attr('selected','selected');
+          }else if(jenisbully2=="cyberstalking"){
+            $('#pelanggaran2 option[value="cyberstalking"]').attr('selected','selected');
+          }else if(jenisbully2=="impersonation"){
+            $('#pelanggaran2 option[value="impersonation"]').attr('selected','selected');
+          }else if(jenisbully2=="bukan perundungan"){
+            $('#pelanggaran2').prop('disabled',true);
+          }
+
+          if(sentimen2=="cyberbullying"){
+            $('#sentimen-noncyberbullying2').prop('checked',false);
+            $('#sentimen-cyberbullying2').prop('checked',true);
+          }else if(sentimen2="non-cyberbullying"){
+            $('#sentimen-noncyberbullying2').prop('checked',true);
+            $('#sentimen-cyberbullying2').prop('checked',false);
+          }
+
+      });
+
+      $('#sentimen-cyberbullying2').on('click', function(){
+        $('#pelanggaran2').prop('disabled',false);
+      });
+
+      $('#sentimen-noncyberbullying2').on('click', function(){
+        $('#pelanggaran2').prop('disabled',true);
+      });
+
+      $('#btn-simpan-dataset').on('click', function(){
+        $.ajax({
+          url: BASE_URL + 'Antibullying/simpan_validasi_komentar',
+          data: $("#formsimpankomentar").serialize(),
+          method: 'post',
+          dataType: 'json',
+            success: function(response){
+              if(response.status=="sukses"){
+                $('#pesan-ubah').html('<div class="alert alert-success">' +response.pesan +'</div>').fadeIn().delay(1000).fadeOut();
+              }else{
+                $('#pesan-ubah').html('<div class="alert alert-danger">' +response.pesan +'</div>').fadeIn().delay(1000).fadeOut();
+              }
+            },
+            error: function (xhr, ajaxOptions, thrownError) { 
+              alert(xhr.responseText);
+              console.log(xhr.responseText);
+            }
+        });
+    });
+
+    })
+  </script>
