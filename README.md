@@ -1,6 +1,6 @@
 # CMS-CyberbullyingFilter-CI3
+**Fitur Sistem**
 Berikut ini dijelaskan tentang fitur-fitur dari sistem manajemen konten dilengkapi dengan penyaring komentar cyber-bullying. Selengkapnya sebagai berikut :
-
 1.	Manajemen artikel
 Manajemen artikel merupakan fitur untuk mengelola artikel. Melalui fitur ini, member bisa membuat artikel, mengedit artikel, menjadwalkan penayangan artikel, dan menonaktifkan artikel dari tampilan front end. 
 2.	Manajemen komentar
@@ -28,3 +28,20 @@ Share to social media merupakan fitur untuk membagikan artikel pada media sosial
 Pengaturan layout web merupakan fitur untuk menganti template layouting untuk blog oleh member. disediakan 2 macam template layouting yang bisa dipilih oleh member untuk menganti tampilan web.
 13.	Laporan statistik artikel
 Fitur ini berguna untuk melihat laporan statistik terkait artikel-artikel yang dipublikasikan, seperti jumlah komentar, rata-rata rating, dan jumlah pembaca.
+
+**Spesifikasi Sistem**
+Berikut ini dijelaskan mengenai spesifikasi sistem manajemen konten yang akan dikembangkan. Selengkapnya sebagai berikut :
+1.	Database menggunakan MySQL.
+2.	Menggunakan framework CodeIgniter.
+3.	Kategori sentimen hanya terdiri atas dua kategori yakni cyberbullying dan bermuatan non-cyberbullying.
+4.	Menggunakan jSastrawi sebagai stemmer.
+5.	Dataset diambil dari berbagai komentar dari berbagai situs portal berita dan blog meliputi kaskus.co.id, kompas.com, kompasiana.com, detik.com melalui crawling, lalu dilabeli kategorinya secara manual.
+
+**Batasan Sistem**
+Berikut dijelaskan tentang batasan masalah dalam pembuatan sistem manajemen konten. Selengkapnya sebagai berikut :
+1.	Sistem manajemen konten blog menggunakan bahasa Indonesia dan tidak mendukung bahasa lainnya.
+2.	Tidak mendukung sistem autentifikasi khusus.
+3.	Sistem manajemen konten blog tidak melayani berbagi sumber daya foto maupun video kepada pengguna lainnya.
+4.	Sistem manajemen konten blog tidak melayani afiliasi terhadap layanan periklanan tertentu.
+5.	Sistem penyaring komentar cyberbullying tidak menangani komentar bermuatan emoticon.
+6.	Sistem penyaring komentar cyberbullying hanya bisa menangani komenter berbahasa Indonesia.
