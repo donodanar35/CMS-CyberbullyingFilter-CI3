@@ -19,14 +19,18 @@ Sedangkan **login** merupakan fitur untuk mengakses akun pengguna dengan memasuk
 6.	**Notifikasi** merupakan fitur untuk memberitahukan kepada member bahwa terdapat informasi terbaru terkait artikel yang ditulisnya. Informasi yang didiberitahukan ini berkaitan dengan adanya berita, pesan peringatan, komentar, rating, maupun follower  terbaru.
 ![This is an image](https://github.com/donodanar35/CMS-CyberbullyingFilter-CI3/blob/main/Screenshot/backend/notifikasi.png)
 7.	**Following** merupakan fitur untuk mengikuti akun member yang terdaftar dalam website, sehingga pengikut bisa mendapatkan kabar terbaru terkait artikel yang dibuat oleh akun yang diikutinya. 
+![This is an image](https://github.com/donodanar35/CMS-CyberbullyingFilter-CI3/blob/main/Screenshot/frontend/following.PNG)
 8.	**Penyaring komentar cyberbullying** merupakan fitur untuk menyaring berbagai komentar yang berpotensi mengandung cyberbullying pada sejumlah komentar yang diberikan pembaca pada suatu artikel. Melalui fitur ini, member bisa menyaring komentar-komentar pada artikel secara manual maupun otomatis. Jika penyaring komentar cyberbullying diaktifkan secara otomatis, maka berbagai komentar yang berpotensi mengandung cyberbullying akan dinonaktifkan dari tampilan artikel web.
 ![This is an image](https://github.com/donodanar35/CMS-CyberbullyingFilter-CI3/blob/main/Screenshot_peringatanCyberbully.PNG)
 9.	**Pelaporan komentar cyberbullying** merupakan fitur untuk melaporkan berbagai komentar yang mengandung muatan cyberbullying secara manual. Melalui fitur ini, member bisa melaporkan komentar cyberbullying yang tidak tersaring oleh sistem, sehingga komentar terkait bisa dinonaktifkan dari tampilan web.
+![This is an image](https://github.com/donodanar35/CMS-CyberbullyingFilter-CI3/blob/main/Screenshot/frontend/pelaporan.PNG)
 10.	**Kategorisasi** merupakan fitur untuk mengelompokkan artikel yang ke dalam beberapa kategori, seperti sosial-budaya, gaya hidup, dll. Melalui fitur ini, pembaca maupun member bisa mencari dan menampilkan daftar artikel berdasarkan temanya. 
+![This is an image](https://github.com/donodanar35/CMS-CyberbullyingFilter-CI3/blob/main/Screenshot/frontend/kategorisasi.PNG)
 11.	**Konfigurasi pengguna** merupakan fitur untuk mengatur privasi biodata pengguna. Melalui fitur ini, member bisa mengubah biodatanya sesuai dengan keinginannya seperti password, nama pengguna, gender, alamat, dll.
 ![This is an image](https://github.com/donodanar35/CMS-CyberbullyingFilter-CI3/blob/main/Screenshot/backend/profil.png)
-12.	**Berbagi ke media sosial** merupakan fitur untuk membagikan artikel pada media sosial. Melalui fitur ini, member bisa membagikan artikel yang dibuatnya secara luas melalui media sosial yakni facebook dan twitter.
-13.	**Setting template web** merupakan fitur untuk menganti template layouting untuk blog oleh member disediakan 2 macam template layouting yang bisa dipilih oleh member untuk menganti tampilan web.
+12.	**Setting template web** merupakan fitur untuk menganti template layouting untuk blog oleh member disediakan 2 macam template layouting yang bisa dipilih oleh member untuk menganti tampilan web.
+![This is an image](https://github.com/donodanar35/CMS-CyberbullyingFilter-CI3/blob/main/Screenshot/backend/konfigurasi.png)
+13.	**Berbagi ke media sosial** merupakan fitur untuk membagikan artikel pada media sosial. Melalui fitur ini, member bisa membagikan artikel yang dibuatnya secara luas melalui media sosial yakni facebook dan twitter.
 14. **Manajemen user** merupakan fitur admin yang berguna untuk mengelola user yang terdaftar di website dimana terdapat 2 macam user yakni admin dan member.
 
 ## Spesifikasi Sistem
