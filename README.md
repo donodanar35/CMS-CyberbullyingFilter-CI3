@@ -1,5 +1,5 @@
 # CMS-CyberbullyingFilter-CI3
-**Fitur Sistem**
+## Fitur Sistem 
 Berikut ini dijelaskan tentang fitur-fitur dari sistem manajemen konten dilengkapi dengan penyaring komentar cyber-bullying. Selengkapnya sebagai berikut :
 1.	Manajemen artikel
 Manajemen artikel merupakan fitur untuk mengelola artikel. Melalui fitur ini, member bisa membuat artikel, mengedit artikel, menjadwalkan penayangan artikel, dan menonaktifkan artikel dari tampilan front end. 
@@ -29,7 +29,7 @@ Pengaturan layout web merupakan fitur untuk menganti template layouting untuk bl
 13.	Laporan statistik artikel
 Fitur ini berguna untuk melihat laporan statistik terkait artikel-artikel yang dipublikasikan, seperti jumlah komentar, rata-rata rating, dan jumlah pembaca.
 
-**Spesifikasi Sistem**
+##Spesifikasi Sistem
 Berikut ini dijelaskan mengenai spesifikasi sistem manajemen konten yang akan dikembangkan. Selengkapnya sebagai berikut :
 1.	Database menggunakan MySQL.
 2.	Menggunakan framework CodeIgniter.
@@ -37,7 +37,7 @@ Berikut ini dijelaskan mengenai spesifikasi sistem manajemen konten yang akan di
 4.	Menggunakan jSastrawi sebagai stemmer.
 5.	Dataset diambil dari berbagai komentar dari berbagai situs portal berita dan blog meliputi kaskus.co.id, kompas.com, kompasiana.com, detik.com melalui crawling, lalu dilabeli kategorinya secara manual.
 
-**Batasan Sistem**
+##Batasan Sistem
 Berikut dijelaskan tentang batasan masalah dalam pembuatan sistem manajemen konten. Selengkapnya sebagai berikut :
 1.	Sistem manajemen konten blog menggunakan bahasa Indonesia dan tidak mendukung bahasa lainnya.
 2.	Tidak mendukung sistem autentifikasi khusus.
