@@ -32,8 +32,8 @@ Sedangkan **login** merupakan fitur untuk mengakses akun pengguna dengan memasuk
 ## Spesifikasi Sistem
 Berikut ini dijelaskan mengenai spesifikasi sistem manajemen konten yang akan dikembangkan. Selengkapnya sebagai berikut :
 1.	Database menggunakan **MySQL**.
-2.	Menggunakan framework **CodeIgniter**.
-3.  Menggunakan **jQuery** dan **Bootstrap**.
+2.	Menggunakan framework **CodeIgniter 3**.
+3.  Menggunakan **jQuery**, **Bootstrap**, **Tiny MCE**, **Chartjs**, dan **DataTables**.
 3.	Kategori sentimen hanya terdiri atas dua kategori yakni cyberbullying dan bermuatan non-cyberbullying.
 4.	Menggunakan **jSastrawi** sebagai stemmer.
 5.	Dataset diambil dari berbagai komentar dari berbagai situs portal berita dan blog meliputi kaskus.co.id, kompas.com, kompasiana.com, detik.com melalui crawling, lalu dilabeli kategorinya secara manual.
