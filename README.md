@@ -1,6 +1,6 @@
 # Sistem Penyaring Cyberbullying Pada Konten Manajemen Sistem
 **Cyberbullying** merupakan bentuk serangan yang bersifat dengki untuk memberikan kepuasaan atau kesenangan pelaku dengan cara menyiksa orang lain. Cyberbullying berdampak secara psikologis, emosional dan trauma sosial. Dampak cyberbullying mempengaruhi kepercayaan diri korban menjadi menurun, munculnya kegelisahan dan depresi pada korban hingga efek terburuk adalah korban yang frustasi bisa melakukan tindakan bunuh diri.  Untuk itu, diperlukan diidentifikasi terhadap komentar-komentar yang diberikan pengguna dalam suatu website guna mengelompokkannya dalam kategori komentar yang bermuatan cyberbullying atau tidak sebagai tindakan antisipasi terhadap bahaya cyberbullying. CMS ini dikembangkan untuk mendukung interaksi antara penulis dan pembaca secara sehat dan meminimalisir tindakan cyberbullying dalam interaksi berbagi komentar di dalam suatu konten blog.
- 
+ ![This is an image](https://github.com/donodanar35/CMS-CyberbullyingFilter-CI3/blob/main/Arsitektur%20Sistem.jpg)
 ## Fitur Sistem 
 Berikut ini dijelaskan tentang fitur-fitur dari sistem manajemen konten dilengkapi dengan penyaring komentar cyber-bullying. Selengkapnya sebagai berikut :
 1.	**Manajemen artikel** merupakan fitur untuk mengelola artikel. Melalui fitur ini, member bisa membuat artikel, mengedit artikel, menjadwalkan penayangan artikel, dan menonaktifkan artikel dari tampilan front end. 
