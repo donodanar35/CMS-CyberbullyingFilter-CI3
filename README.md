@@ -1,4 +1,7 @@
-# CMS-CyberbullyingFilter-CI3
+# Sistem Penyaring Cyberbullying pada Konten Manajemen Sistem
+CMS ini dikembangkan untuk mendukung interaksi antara penulis dan pembaca secara sehat dengan cara dilengkapi penyaring komentar yang diindikasi mengandung cyberbullying. 
+Cyberbullying merupakan bentuk serangan yang bersifat dengki untuk memberikan kepuasaan atau kesenangan pelaku dengan cara menyiksa orang lain. Cyberbullying berdampak secara psikologis, emosional dan trauma sosial. Dampak cyberbullying mempengaruhi kepercayaan diri korban menjadi menurun, munculnya kegelisahan dan depresi pada korban hingga efek terburuk adalah korban yang frustasi bisa melakukan tindakan bunuh diri.  Untuk itu, diperlukan diidentifikasi terhadap komentar-komentar yang diberikan pengguna dalam suatu website guna mengelompokkannya dalam kategori komentar yang bermuatan cyberbullying atau tidak sebagai tindakan antisipasi terhadap bahaya cyberbullying. Untuk itu, dibutuhkan fitur penyaring komentar cyberbullying untuk menyaring berbagai komentar yang berpotensi mengandung cyberbullying dalam suatu website.
+ 
 ## Fitur Sistem 
 Berikut ini dijelaskan tentang fitur-fitur dari sistem manajemen konten dilengkapi dengan penyaring komentar cyber-bullying. Selengkapnya sebagai berikut :
 1.	Manajemen artikel
@@ -29,7 +32,7 @@ Pengaturan layout web merupakan fitur untuk menganti template layouting untuk bl
 13.	Laporan statistik artikel
 Fitur ini berguna untuk melihat laporan statistik terkait artikel-artikel yang dipublikasikan, seperti jumlah komentar, rata-rata rating, dan jumlah pembaca.
 
-##Spesifikasi Sistem
+## Spesifikasi Sistem
 Berikut ini dijelaskan mengenai spesifikasi sistem manajemen konten yang akan dikembangkan. Selengkapnya sebagai berikut :
 1.	Database menggunakan MySQL.
 2.	Menggunakan framework CodeIgniter.
@@ -37,7 +40,7 @@ Berikut ini dijelaskan mengenai spesifikasi sistem manajemen konten yang akan di
 4.	Menggunakan jSastrawi sebagai stemmer.
 5.	Dataset diambil dari berbagai komentar dari berbagai situs portal berita dan blog meliputi kaskus.co.id, kompas.com, kompasiana.com, detik.com melalui crawling, lalu dilabeli kategorinya secara manual.
 
-##Batasan Sistem
+## Batasan Sistem
 Berikut dijelaskan tentang batasan masalah dalam pembuatan sistem manajemen konten. Selengkapnya sebagai berikut :
 1.	Sistem manajemen konten blog menggunakan bahasa Indonesia dan tidak mendukung bahasa lainnya.
 2.	Tidak mendukung sistem autentifikasi khusus.
