@@ -1,6 +1,5 @@
 # CMS-CyberbullyingFilter-CI3
-Berikut ini dijelaskan tentang fitur-fitur dari sistem manajemen konten yang akan dikembangkan. Selengkapnya sebagai berikut :
-
+Berikut ini dijelaskan tentang fitur-fitur dari sistem manajemen konten dilengkapi dengan penyaring komentar cyber-bullying. Selengkapnya sebagai berikut :
 
 1.	Manajemen artikel
 Manajemen artikel merupakan fitur untuk mengelola artikel. Melalui fitur ini, member bisa membuat artikel, mengedit artikel, menjadwalkan penayangan artikel, dan menonaktifkan artikel dari tampilan front end. 
@@ -29,5 +28,3 @@ Share to social media merupakan fitur untuk membagikan artikel pada media sosial
 Pengaturan layout web merupakan fitur untuk menganti template layouting untuk blog oleh member. disediakan 2 macam template layouting yang bisa dipilih oleh member untuk menganti tampilan web.
 13.	Laporan statistik artikel
 Fitur ini berguna untuk melihat laporan statistik terkait artikel-artikel yang dipublikasikan, seperti jumlah komentar, rata-rata rating, dan jumlah pembaca.
-14.	Pretty URL
-Fitur ini berguna untuk merapikan URL blog supaya link blog lebih mudah dibaca dan dipahami oleh pembaca. Adapun pretty URL diatur menggunakan .hta access pada framework CI. 
