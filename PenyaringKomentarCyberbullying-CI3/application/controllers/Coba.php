@@ -29,6 +29,24 @@ class Coba extends CI_Controller {
         echo $stemming;
     }
 
+    public function captch(){
+        $this->load->helper('captcha');
+        $values = array(
+            'word' => '',   //Generate alternate word by default. You can also set your word.
+            'word_length' => 6,  // To set length of captcha word.
+            'img_path' => './images/',   // Create  folder "images" in root directory, and give path.
+            'img_url' => base_url() .'images/',  // To store captcha images in "images" folder.
+            'font_path' => FCPATH.'system/fonts/texb.ttf',
+            'img_width' => '250',   //Set image width.
+            'img_height' => 50,   // Set image height.
+            );
+
+        // "create_captcha" is function of "captcha helper", this will set array in helper library.
+        $captcha = create_captcha($values); 
+        var_dump($captcha['image']);
+        //echo $cap['image'];
+    }
+
     public function tes_stemmer(){
         $stemming = $this->MyModel->stemmer("Apa iya manusia itu menyukai meratap dan berkeluh kesah susah ya manusia yang seperti itu");
         echo $stemming;

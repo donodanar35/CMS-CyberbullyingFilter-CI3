@@ -67,7 +67,7 @@
                       </div>
                       <div class="form-group">
                           <label for="isiartikel"><b>Isi Artikel</b></label>
-                          <textarea form="formBuat" rows="20" name="isiartikel" class="form-control" required placeholder="tulis isi artikel...">
+                          <textarea form="formBuat" id="mytextarea" rows="20" name="isiartikel" class="form-control" required placeholder="tulis isi artikel...">
                               <?php echo cetak($this->security->xss_clean($artikel->ISI_ARTIKEL));?>
                           </textarea>
                           <small id="isiartikelHelp" class="form-text text-muted">Tulis isi lengkap artikel!</small>
@@ -78,7 +78,7 @@
                         <small id="katakunciHelp" class="form-text text-muted">Tulislah kata kunci artikel! Usahakan kata kunci tidak lebih 7 kata. Pisahkan setiap kata kunci dengan tanda koma (,)</small>
                       </div>
                       <button id="btn-simpan-artikel" type="button" class="btn btn-primary">Terbitkan</button>
-                      <a href="<?php echo site_url('Artikel/hapus_artikel') + '/' + $artikel->ID_POSTING;?>" class="btn btn-danger hapusartikel" data-toggle="modal" data-target="#formHapusArtikel" data-idx="<?= $artikel->ID_POSTING;?>">Hapus</a>
+                      <a href="<?php echo base_url('Artikel/hapus_artikel') . '/' . $artikel->ID_POSTING;?>" class="btn btn-danger hapusartikel" data-toggle="modal" data-target="#formHapusArtikel" data-idx="<?= $artikel->ID_POSTING;?>">Hapus</a>
                   </form>
                   <?php }?>
               </div>

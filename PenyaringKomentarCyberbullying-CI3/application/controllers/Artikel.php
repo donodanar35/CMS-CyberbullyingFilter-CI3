@@ -1147,7 +1147,7 @@ class Artikel extends CI_Controller {
                 $data['kategori_pilihan'] = $this->MyModel->kategori_pilihan();
                 $data['artikel_populer'] = $this->MyModel->getArtikelByPopuler();
 
-                $data['url'] = "artikel/detail/" + $artikel->JUDUL_URL;
+                $data['url'] = "artikel/detail/" . $artikel->JUDUL_URL;
                 
                 $identitas = $this->MyModel->getidentitas();
                 if($identitas->TEMPLATE == 'standar'){

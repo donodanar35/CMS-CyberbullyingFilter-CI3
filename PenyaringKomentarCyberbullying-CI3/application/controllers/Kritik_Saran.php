@@ -55,7 +55,7 @@ class Kritik_Saran extends CI_Controller {
 		
 		$cap = create_captcha($vals);
 		$data['captcha_kode'] = $random;
-		$data['captcha'] = $cap['image'];
+		$data['captcha'] = isset($cap['image']) ? $cap['image'] : '';
 		$data['kuesioner'] = $this->get_kuesioner();
 		
 		$identitas = $this->MyModel->getidentitas();

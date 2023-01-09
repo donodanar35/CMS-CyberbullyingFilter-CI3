@@ -62,7 +62,7 @@
                         <td><?php echo $d['TOTAL_KOMENTAR'];?></td>
                         <td>
                           <center>
-                              <a href="<?php echo site_url('Artikel/hapus_artikel') + '/' + $d['ID_POSTING'];?>" class="btn btn-danger hapusartikel" data-toggle="modal" data-target="#formHapus" data-idx="<?= $d['ID_POSTING'];?>">Hapus</a>
+                              <a href="" class="btn btn-danger hapusartikel" data-toggle="modal" data-target="#formHapus" data-idx="<?= $d['ID_POSTING'];?>">Hapus</a>
                               <?php //var_dump($d);
                                 if($d['AKTIF'] == 'Y'){?>
                                     <a href="<?php echo site_url();?>Admin/artikel_tinjau/<?php echo $d['ID_POSTING']?>" class="btn btn-primary">Tinjau</a>
