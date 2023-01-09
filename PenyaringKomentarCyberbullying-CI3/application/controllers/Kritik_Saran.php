@@ -54,7 +54,7 @@ class Kritik_Saran extends CI_Controller {
 		);
 		
 		$cap = create_captcha($vals);
-		$data['captcha_kode'] = $random;
+		$data['captcha_kode'] = isset($random) ? $random : '';
 		$data['captcha'] = isset($cap['image']) ? $cap['image'] : '';
 		$data['kuesioner'] = $this->get_kuesioner();
 		
@@ -113,7 +113,7 @@ class Kritik_Saran extends CI_Controller {
 		$vals = array(
 			'word'          => $random,
 			'img_path'      => './captcha/',
-			'img_url'       => base_url('captcha'),
+			'img_url'       => base_url(''). '/captcha',
 			'img_width'     => '205',
 			'img_height'    => 50,
 			'expiration'    => 7200,
@@ -129,10 +129,13 @@ class Kritik_Saran extends CI_Controller {
 			)
 		);
 		
+		$image = isset($cap['image']) ? $cap['image'] : '';
+		$rand = isset($random) ? $random :'';
+
 		$cap = create_captcha($vals);
 		$callback = array(
-			'captcha_kode' => $random,
-			'captcha' => $cap['image']
+			'captcha_kode' => $rand,
+			'captcha' => $image
 		);
 		echo json_encode($callback);
 	}

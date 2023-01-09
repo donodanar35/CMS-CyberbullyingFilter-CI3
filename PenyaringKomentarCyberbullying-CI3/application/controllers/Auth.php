@@ -100,19 +100,18 @@ class Auth extends CI_Controller
     }
 
 	public function register(){
+		$this->load->library('session');
 		$this->load->helper('captcha');
 		$random = rand(1000,9999);
 		$vals = array(
 			'word'          => $random,
-			'img_path'      => './captcha/',
-			'img_url'       => base_url('captcha'),
+			'img_path'      => './catcha/',
+			'img_url'       => base_url() . '/captcha',
 			'img_width'     => '205',
 			'img_height'    => 50,
 			'expiration'    => 3600,
 			'word_length'   => 8,
 			'font_size'     => 30,
-	
-			// White background and border, black text and red grid
 			'colors'        => array(
 					'background' => array(255, 255, 255),
 					'border' => array(155, 155, 155),
@@ -122,8 +121,8 @@ class Auth extends CI_Controller
 		);
 		
 		$cap = create_captcha($vals);
-		$data['captcha_kode'] = $random;
-		$data['captcha'] = $cap['image'];
+		$data['captcha_kode'] = isset($random) ? $random : '';
+		$data['captcha'] = isset($cap['image']) ? $cap['image'] : '';
 		$this->load->view('admin/layout/register.html',$data);
 	}
 	
